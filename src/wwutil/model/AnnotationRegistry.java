@@ -87,7 +87,8 @@ public class AnnotationRegistry
             return;
 
         for (Field field : allFieldMap.values()) {
-            for (Annotation annObj : field.getDeclaredAnnotations()) {
+        	field.setAccessible(true);
+        	for (Annotation annObj : field.getDeclaredAnnotations()) {
                 AnnotationFieldHandler  handler = fieldHandlers.get(annObj.annotationType());
                 if (handler != null) {
                     try {

@@ -40,14 +40,16 @@ class DataUtil
     static String getFieldValueStr(Object dataObj, Field field)
         throws Exception
     {
-        Object  value = field.get(dataObj);
+    	field.setAccessible(true);
+    	Object  value = field.get(dataObj);
         return encodeValueToAttrStr(value, field.getType());
     }
 
     static void setFieldValueStr(Object dataObj, Field field, String attrStr)
         throws Exception
     {
-        Object  value = decodeAttrStrToValue(attrStr, field.getType());
+    	field.setAccessible(true);
+    	Object  value = decodeAttrStrToValue(attrStr, field.getType());
         field.set(dataObj, value);
     }
 
