@@ -66,7 +66,8 @@ public class S3Dao<T> {
         Map<String, Field> s3Fields = jsoda.getS3Fields(modelName);
 
         for (Field field : jsoda.getS3Fields(modelName).values()) {
-            try {
+        	field.setAccessible(true);
+        	try {
                 boolean gzip = ReflectUtil.getAnnotationValueEx(field, S3Field.class, "gzip", boolean.class, Boolean.FALSE);
                 Object  value = null;
                 switch (ReflectUtil.getAnnotationValueEx(field, S3Field.class, "storeAs", int.class, S3Field.AS_JSON)) {
